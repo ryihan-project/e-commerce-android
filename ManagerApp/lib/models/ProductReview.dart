@@ -22,4 +22,11 @@ class ProductReview{
     int productId = int.parse(jsonObject['product_id'].toString());
     int orderId = int.parse(jsonObject['order_id'].toString());
     int userId = int.parse(jsonObject['user_id'].toString());
+  static List<ProductReview> getListFromJson(List<dynamic> jsonArray) {
+    List<ProductReview> list = [];
+    for (int i = 0; i < jsonArray.length; i++) {
+      list.add(ProductReview.fromJson(jsonArray[i]));
+    }
+    return list;
+  }
 }
