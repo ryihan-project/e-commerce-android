@@ -22,6 +22,14 @@ class ProductReview{
     int productId = int.parse(jsonObject['product_id'].toString());
     int orderId = int.parse(jsonObject['order_id'].toString());
     int userId = int.parse(jsonObject['user_id'].toString());
+    DateTime createdAt = DateTime.parse(jsonObject['created_at'].toString());
+    String review = "No review";
+    if(jsonObject['review']!=null)
+      review = jsonObject['review'].toString();
+    User user;
+    if(jsonObject['user']!=null){
+      user = User.fromJson(jsonObject['user']);
+    }
     Product product;
     if(jsonObject['product']!=null){
       product = Product.fromJson(jsonObject['product']);
