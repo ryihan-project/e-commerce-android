@@ -252,6 +252,11 @@ AuthController {
 
     if(password.isNotEmpty)
       data['password']=password;
+
+    if(imageFile!=null){
+      final bytes = imageFile.readAsBytesSync();
+      String img64 =base64Encode(bytes);
+      data['avatar_image'] = img64;
     }
 
 
