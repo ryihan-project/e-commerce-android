@@ -122,3 +122,15 @@ AuthController {
 
         myResponse.success = true;
       } else {
+        Map<String, dynamic> data = json.decode(response.body);
+        myResponse.success = false;
+        myResponse.setError(data);
+      }
+
+      return myResponse;
+    }catch(e){
+      return MyResponse.makeServerProblemError();
+    }
+  }
+
+
