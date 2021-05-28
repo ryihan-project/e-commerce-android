@@ -144,3 +144,12 @@ AuthController {
       'email': email
     };
 
+    //Encode
+    String body = json.encode(data);
+
+    //Check Internet
+    bool isConnected = await InternetUtils.checkConnection();
+    if (!isConnected) {
+      return MyResponse.makeInternetConnectionError();
+    }
+
