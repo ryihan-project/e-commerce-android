@@ -153,3 +153,10 @@ AuthController {
       return MyResponse.makeInternetConnectionError();
     }
 
+    try {
+      Response response = await http.post(url,
+          headers: ApiUtil.getHeader(requestType: RequestType.Post),
+          body: body);
+
+
+
