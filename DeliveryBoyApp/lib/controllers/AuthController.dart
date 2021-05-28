@@ -245,9 +245,16 @@ AuthController {
     //Get Token
     String token = await AuthController.getApiToken();
     String registerUrl = ApiUtil.MAIN_API_URL + ApiUtil.UPDATE_PROFILE;
+
     Map data = {};
     if(mobile.isNotEmpty)
       data['mobile'] = mobile;
+
+    if(password.isNotEmpty)
+      data['password']=password;
+    }
+
+
     //Encode
     String body = json.encode(data);
 
