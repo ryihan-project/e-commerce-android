@@ -22,3 +22,18 @@ AuthController {
   /*-----------------   Log In     ----------------------*/
 
   static Future<MyResponse> loginUser(String email, String password) async {
+
+    //Get FCM
+    PushNotificationsManager pushNotificationsManager = PushNotificationsManager();
+    await pushNotificationsManager.init();
+    String fcmToken = await pushNotificationsManager.getToken();
+
+    String loginUrl = ApiUtil.MAIN_API_URL + ApiUtil.AUTH_LOGIN;
+
+    //Body data
+    Map data = {'email': email, 'password': password, 'fcm_token':fcmToken};
+
+    //Encode
+    String body = json.encode(data);
+
+
