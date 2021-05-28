@@ -71,3 +71,11 @@ AuthController {
       return MyResponse.makeServerProblemError();
     }
   }
+
+
+
+  /*-----------------   Register     ----------------------*/
+
+  static Future<MyResponse> registerUser(String name, String email,
+      String password) async {
+    //Get FCM
