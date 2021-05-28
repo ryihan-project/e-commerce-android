@@ -27,4 +27,23 @@ class AppDataController {
         return MyResponse.makeInternetConnectionError<AppData>();
       }
 
+      try {
+        http.Response response = await http.get(
+            url, headers: headers);
+
+        MyResponse<AppData> myResponse = MyResponse(response.statusCode);
+        if (response.statusCode == 200) {
+          myResponse.success = true;
+          myResponse.data = AppData.fromJson(json.decode(response.body));
+        } else {
+          Map<String, dynamic> data = json.decode(response.body);
+          myResponse.success = false;
+          myResponse.setError(data);
+        }
+        return myResponse;
+      } catch (e) {
+        //If any server error...
+        return MyResponse.makeServerProblemError<AppData>();
+      }
+    }
 }
