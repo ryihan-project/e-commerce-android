@@ -178,3 +178,11 @@ AuthController {
   }
 
 
+  /*-----------------   Log Out    ----------------------*/
+
+  static Future<bool> logoutUser() async {
+
+    //Remove FCM
+    PushNotificationsManager pushNotificationsManager = PushNotificationsManager();
+    await pushNotificationsManager.removeFCM();
+
