@@ -242,3 +242,6 @@ AuthController {
 
   static Future<MyResponse> updateUser(String mobile,String password,File imageFile) async {
 
+    //Get Token
+    String token = await AuthController.getApiToken();
+    String registerUrl = ApiUtil.MAIN_API_URL + ApiUtil.UPDATE_PROFILE;
