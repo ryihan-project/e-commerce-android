@@ -201,3 +201,13 @@ AuthController {
 
 
 
+  /*-----------------   Save user in cache   ----------------------*/
+
+  static saveUser(Map<String, dynamic> user) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    await sharedPreferences.setString('name', user['name']);
+    await sharedPreferences.setString('email', user['email']);
+    await sharedPreferences.setString('avatar_url', user['avatar_url']);
+    await sharedPreferences.setBool('is_offline', TextUtils.parseBool(user['is_offline']));
+    await sharedPreferences.setString('mobile', user['mobile']);
+  }
