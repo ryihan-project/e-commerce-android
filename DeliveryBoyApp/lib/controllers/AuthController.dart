@@ -79,3 +79,16 @@ AuthController {
   static Future<MyResponse> registerUser(String name, String email,
       String password) async {
     //Get FCM
+    PushNotificationsManager pushNotificationsManager = PushNotificationsManager();
+    await pushNotificationsManager.init();
+    String fcmToken = await pushNotificationsManager.getToken();
+
+    String registerUrl = ApiUtil.MAIN_API_URL + ApiUtil.AUTH_REGISTER;
+
+    //Body date
+    Map data = {
+      'name': name,
+      'email': email,
+      'password': password,
+      'fcm_token': fcmToken
+    };
