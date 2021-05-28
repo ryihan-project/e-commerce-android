@@ -236,3 +236,9 @@ AuthController {
 
     return DeliveryBoy(name, email, token, avatarUrl, mobile,isOffline);
   }
+
+
+  /*-----------------   Update user     ----------------------*/
+
+  static Future<MyResponse> updateUser(String mobile,String password,File imageFile) async {
+
