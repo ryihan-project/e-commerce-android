@@ -160,3 +160,12 @@ AuthController {
 
 
 
+      MyResponse myResponse = MyResponse(response.statusCode);
+
+      if (response.statusCode==200) {
+        myResponse.success = true;
+      } else {
+        Map<String, dynamic> data = json.decode(response.body);
+        myResponse.success = false;
+        myResponse.setError(data);
+      }
