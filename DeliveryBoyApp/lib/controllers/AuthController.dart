@@ -245,6 +245,19 @@ AuthController {
     //Get Token
     String token = await AuthController.getApiToken();
     String registerUrl = ApiUtil.MAIN_API_URL + ApiUtil.UPDATE_PROFILE;
+  static Widget notice(ThemeData themeData){
+    return Container(
+      margin: Spacing.fromLTRB(24, 36, 24, 24),
+      child: RichText(
+        text: TextSpan(
+            children: [
+              TextSpan(
+                  text: "Note: ",
+                  style: AppTheme.getTextStyle(themeData.textTheme.subtitle2,color: themeData.colorScheme.primary,fontWeight: 600)
+              ),
+              TextSpan(
+                  text: "After testing please logout, because there is many user testing with same IDs so it can be possible that you can get unnecessary notifications",
+                  style: AppTheme.getTextStyle(themeData.textTheme.bodyText2,color: themeData.colorScheme.onBackground,fontWeight: 500,letterSpacing: 0)
               ),
             ]
         ),
