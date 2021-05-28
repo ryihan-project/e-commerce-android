@@ -186,3 +186,13 @@ AuthController {
     PushNotificationsManager pushNotificationsManager = PushNotificationsManager();
     await pushNotificationsManager.removeFCM();
 
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+
+    await sharedPreferences.remove('name');
+    await sharedPreferences.remove('email');
+    await sharedPreferences.remove('avatar_url');
+    await sharedPreferences.remove('is_offline');
+    await sharedPreferences.remove('mobile');
+    await sharedPreferences.remove('email');
+    await sharedPreferences.remove('token');
+
