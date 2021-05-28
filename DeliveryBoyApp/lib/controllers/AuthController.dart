@@ -245,6 +245,23 @@ AuthController {
     //Get Token
     String token = await AuthController.getApiToken();
     String registerUrl = ApiUtil.MAIN_API_URL + ApiUtil.UPDATE_PROFILE;
+      MyResponse myResponse = MyResponse(response.statusCode);
+      if (response.statusCode == 200) {
+        await saveUser(json.decode(response.body)['delivery_boy']);
+        myResponse.success = true;
+      } else {
+        Map<String, dynamic> data = json.decode(response.body);
+        myResponse.success = false;
+        myResponse.setError(data);
+      }
+
+      return myResponse;
+    }catch(e){
+      return MyResponse.makeServerProblemError();
+    }
+  }
+
+
   /*-----------------   Check user login or not     ----------------------*/
 
   static Future<bool> isLoginUser() async {
