@@ -245,6 +245,24 @@ AuthController {
     //Get Token
     String token = await AuthController.getApiToken();
     String registerUrl = ApiUtil.MAIN_API_URL + ApiUtil.UPDATE_PROFILE;
+  /*-----------------   Check user login or not     ----------------------*/
+
+  static Future<bool> isLoginUser() async {
+    String token = await getApiToken();
+    if (token == null) {
+      return false;
+    }
+    return true;
+  }
+
+  /*-----------------   Get user login token     ----------------------*/
+
+  static Future<String> getApiToken() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    return sharedPreferences.getString("token");
+  }
+
+
   /*-----------------   Change status (online/offline)     ----------------------*/
 
   static Future<MyResponse> changeStatus(bool status) async {
