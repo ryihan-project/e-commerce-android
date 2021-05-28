@@ -46,4 +46,20 @@ class AppDataController {
         return MyResponse.makeServerProblemError<AppData>();
       }
     }
+    else {
+      String url = ApiUtil.MAIN_API_URL + ApiUtil.APP_DATA ;
+      Map<String, String> headers =
+      ApiUtil.getHeader(requestType: RequestType.Get);
+
+      //Check Internet
+      bool isConnected = await InternetUtils.checkConnection();
+      if (!isConnected) {
+        return MyResponse.makeInternetConnectionError<AppData>();
+      }
+
+      try {
+        http.Response response = await http.get(
+            url, headers: headers);
+
+
 }
