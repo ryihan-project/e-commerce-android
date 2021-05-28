@@ -101,3 +101,11 @@ AuthController {
     if (!isConnected) {
       return MyResponse.makeInternetConnectionError();
     }
+
+    try {
+      Response response = await http.post(registerUrl,
+          headers: ApiUtil.getHeader(requestType: RequestType.Post),
+          body: body);
+
+      MyResponse myResponse = MyResponse(response.statusCode);
+
