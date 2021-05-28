@@ -169,3 +169,12 @@ AuthController {
         myResponse.success = false;
         myResponse.setError(data);
       }
+
+      return myResponse;
+    }catch(e){
+      return MyResponse.makeServerProblemError();
+    }
+
+  }
+
+
