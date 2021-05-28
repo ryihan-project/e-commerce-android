@@ -11,3 +11,14 @@ import 'package:DeliveryBoyApp/utils/TextUtils.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'package:http/http.dart' as http;
+
+class
+
+AuthController {
+
+
+  /*-----------------   Log In     ----------------------*/
+
+  static Future<MyResponse> loginUser(String email, String password) async {
