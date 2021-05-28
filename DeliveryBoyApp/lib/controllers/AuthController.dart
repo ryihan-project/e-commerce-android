@@ -245,6 +245,21 @@ AuthController {
     //Get Token
     String token = await AuthController.getApiToken();
     String registerUrl = ApiUtil.MAIN_API_URL + ApiUtil.UPDATE_PROFILE;
+    //Encode
+    String body = json.encode(data);
+
+    //Check Internet
+    bool isConnected = await InternetUtils.checkConnection();
+    if (!isConnected) {
+      return MyResponse.makeInternetConnectionError();
+    }
+
+    try {
+      Response response = await http.post(registerUrl,
+        headers: ApiUtil.getHeader(requestType: RequestType.PostWithAuth,token: token),
+        body: body,);
+
+
       MyResponse myResponse = MyResponse(response.statusCode);
       if (response.statusCode == 200) {
         await saveUser(json.decode(response.body)['delivery_boy']);
