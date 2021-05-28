@@ -11,5 +11,20 @@ import 'AuthController.dart';
 
 class AppDataController {
 
+  //-------------------- Add user address --------------------------------//
+  static Future<MyResponse<AppData>> getAppData() async {
+    //Get Api Token
+
+    String token = await AuthController.getApiToken();
+    if (token!=null) {
+      String url = ApiUtil.MAIN_API_URL + ApiUtil.APP_DATA + ApiUtil.DELIVERY_BOY;
+      Map<String, String> headers =
+      ApiUtil.getHeader(requestType: RequestType.GetWithAuth,token: token);
+
+      //Check Internet
+      bool isConnected = await InternetUtils.checkConnection();
+      if (!isConnected) {
+        return MyResponse.makeInternetConnectionError<AppData>();
+      }
 
 }
