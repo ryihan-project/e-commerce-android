@@ -134,3 +134,13 @@ AuthController {
   }
 
 
+  /*-----------------   Forgot Password     ----------------------*/
+
+  static forgotPassword(String email) async {
+    String url = ApiUtil.MAIN_API_URL + ApiUtil.FORGOT_PASSWORD;
+
+    //Body date
+    Map data = {
+      'email': email
+    };
+
