@@ -196,3 +196,8 @@ AuthController {
     await sharedPreferences.remove('email');
     await sharedPreferences.remove('token');
 
+    return true;
+  }
+
+
+
