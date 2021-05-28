@@ -211,3 +211,12 @@ AuthController {
     await sharedPreferences.setBool('is_offline', TextUtils.parseBool(user['is_offline']));
     await sharedPreferences.setString('mobile', user['mobile']);
   }
+
+  static saveUserFromDeliveryBoy(DeliveryBoy deliveryBoy) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    await sharedPreferences.setString('name', deliveryBoy.name);
+    await sharedPreferences.setString('email', deliveryBoy.email);
+    await sharedPreferences.setString('avatar_url', deliveryBoy.avatarUrl);
+    await sharedPreferences.setBool('is_offline', deliveryBoy.isOffline);
+    await sharedPreferences.setString('mobile', deliveryBoy.mobile);
+  }
