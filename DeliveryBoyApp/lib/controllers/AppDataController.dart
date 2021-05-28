@@ -10,3 +10,6 @@ import 'package:http/http.dart' as http;
 import 'AuthController.dart';
 
 class AppDataController {
+
+
+}
