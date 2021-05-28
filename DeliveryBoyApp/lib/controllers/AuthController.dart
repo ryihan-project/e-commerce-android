@@ -245,6 +245,27 @@ AuthController {
     //Get Token
     String token = await AuthController.getApiToken();
     String registerUrl = ApiUtil.MAIN_API_URL + ApiUtil.UPDATE_PROFILE;
+  /*-----------------   Change status (online/offline)     ----------------------*/
+
+  static Future<MyResponse> changeStatus(bool status) async {
+
+    String token = await getApiToken();
+    String registerUrl = ApiUtil.MAIN_API_URL + ApiUtil.CHANGE_STATUS;
+
+    //Body date
+    Map data = {
+      'is_offline': TextUtils.parseBool(status),
+    };
+
+    //Encode
+    String body = json.encode(data);
+
+    //Check Internet
+    bool isConnected = await InternetUtils.checkConnection();
+    if (!isConnected) {
+      return MyResponse.makeInternetConnectionError<DeliveryBoy>();
+    }
+
     try {
       Response response = await http.post(registerUrl,
           headers: ApiUtil.getHeader(requestType: RequestType.PostWithAuth,token: token),
