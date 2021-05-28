@@ -52,3 +52,22 @@ AuthController {
       SharedPreferences sharedPreferences =
       await SharedPreferences.getInstance();
 
+      Map<String, dynamic> data = json.decode(response.body);
+      Map<String, dynamic> user = data['delivery_boy'];
+      String token = data['token'];
+
+      await saveUser(user);
+      await sharedPreferences.setString('token', token);
+
+      myResponse.success = true;
+    } else {
+      Map<String, dynamic> data = json.decode(response.body);
+      myResponse.success = false;
+      myResponse.setError(data);
+    }
+
+    return myResponse;
+    }catch(e){
+      return MyResponse.makeServerProblemError();
+    }
+  }
