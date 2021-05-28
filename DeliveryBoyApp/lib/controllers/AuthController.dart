@@ -220,3 +220,19 @@ AuthController {
     await sharedPreferences.setBool('is_offline', deliveryBoy.isOffline);
     await sharedPreferences.setString('mobile', deliveryBoy.mobile);
   }
+
+
+  /*-----------------   Get user from cache     ----------------------*/
+
+  static Future<DeliveryBoy> getUser() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+
+    String name = sharedPreferences.getString('name');
+    String email = sharedPreferences.getString('email');
+    String token = sharedPreferences.getString('token');
+    String avatarUrl = sharedPreferences.getString('avatar_url');
+    String mobile = sharedPreferences.getString('mobile');
+    bool isOffline = sharedPreferences.getBool('is_offline');
+
+    return DeliveryBoy(name, email, token, avatarUrl, mobile,isOffline);
+  }
